@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -56,36 +55,40 @@ public class Main {
         String id = getStringInput("Product ID: ");
         int quantity = getIntInput("Quantity: ");
 
-        try {
+        if (id.trim().isEmpty()) {
+            System.out.println("Error: Product ID cannot be empty!");
+        } else if (quantity <= 0) {
+            System.out.println("Error: Quantity must be positive!");
+        } else {
             inventory.processSale(id, quantity);
             System.out.println("Sale processed successfully!");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
         }
     }
 
     private static String getStringInput(String prompt) {
         System.out.print(prompt);
         while (true) {
-            try {
-                String input = scanner.nextLine().trim();
-                if (!input.isEmpty()) return input;
-                System.out.print("Input cannot be empty. " + prompt);
-            } catch (Exception e) {
-                System.out.print("Invalid input. " + prompt);
-                scanner.nextLine(); // Clear buffer
+            if (!scanner.hasNextLine()) {
+                System.out.print("No input detected. " + prompt);
+                scanner.next();
+                continue;
             }
+            String input = scanner.nextLine().trim();
+            if (!input.isEmpty()) {
+                return input;
+            }
+            System.out.print("Input cannot be empty. " + prompt);
         }
     }
 
     private static int getIntInput(String prompt) {
         while (true) {
-            try {
-                System.out.print(prompt);
+            System.out.print(prompt);
+            if (scanner.hasNextInt()) {
                 int value = scanner.nextInt();
                 scanner.nextLine();
                 return value;
-            } catch (InputMismatchException e) {
+            } else {
                 System.out.println("Please enter a valid integer.");
                 scanner.nextLine();
             }
@@ -94,14 +97,14 @@ public class Main {
 
     private static double getDoubleInput() {
         while (true) {
-            try {
-                System.out.print("Price: ");
+            System.out.print("Price: ");
+            if (scanner.hasNextDouble()) {
                 double value = scanner.nextDouble();
-                scanner.nextLine(); // Clear newline
+                scanner.nextLine();
                 return value;
-            } catch (InputMismatchException e) {
+            } else {
                 System.out.println("Please enter a valid number.");
-                scanner.nextLine(); // Clear invalid input
+                scanner.nextLine();
             }
         }
     }
