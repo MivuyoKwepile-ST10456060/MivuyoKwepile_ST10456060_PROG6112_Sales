@@ -19,6 +19,8 @@ public class Inventory {
         Product product = getProduct(productId);
         if (product == null) throw new IllegalArgumentException("Product not found");
         if (product.getQuantity() < quantity) throw new IllegalArgumentException("Insufficient stock");
+        if (quantity <= 0) throw new IllegalArgumentException("Quantity must be positive");
+
 
         product.adjustQuantity(-quantity);
         sales.add(new Sale(product, quantity));

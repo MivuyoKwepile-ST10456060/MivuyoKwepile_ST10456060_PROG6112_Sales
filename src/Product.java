@@ -29,9 +29,9 @@ public class Product {
         this.price = newPrice;
     }
 
-    public void adjustQuantity(int delta) {
-        if (quantity + delta < 0) throw new IllegalArgumentException("Insufficient quantity");
-        quantity += delta;
+    public void adjustQuantity(int amount) {
+        if (quantity + amount < 0) throw new IllegalArgumentException("Insufficient quantity");
+        quantity += amount;
     }
 
     @Override

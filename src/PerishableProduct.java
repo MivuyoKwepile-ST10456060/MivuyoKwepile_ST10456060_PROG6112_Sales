@@ -7,8 +7,15 @@ public class PerishableProduct extends Product {
     public PerishableProduct(String productId, String name, double price,
                              int quantity, String expiryDate) {
         super(productId, name, price, quantity);
-        this.expiryDate = LocalDate.parse(expiryDate,
-                DateTimeFormatter.ISO_LOCAL_DATE);
+        try {
+            this.expiryDate = LocalDate.parse(expiryDate, DateTimeFormatter.ISO_LOCAL_DATE);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid expiry date format. Use YYYY-MM-DD.", e);
+        }
+    }
+
+        public LocalDate getExpiryDate() {
+        return expiryDate;
     }
 
     public boolean isExpired() {

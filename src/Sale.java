@@ -20,12 +20,22 @@ public class Sale {
     }
 
     public double getTotal() {
-        return unitPrice * quantity;
+        double effectivePrice = unitPrice;
+        if (quantity == 1) {
+            effectivePrice = effectivePrice * 0.9;
+        }
+        return effectivePrice * quantity;
     }
 
     public String getReceiptLine() {
-        return String.format("%-3d x %-20s @ R%-6.2f = R%-7.2f",
-                quantity, productName, unitPrice, getTotal());
+        double effectivePrice = unitPrice;
+        String discountText = "";
+        if (quantity == 1) {
+            effectivePrice = unitPrice * 0.9;
+            discountText = " (-10%)";
+        }
+        return String.format("%-3d x %-20s%s @ R%-6.2f = R%-7.2f",
+                quantity, productName, discountText, effectivePrice, effectivePrice * quantity);
     }
 
     @Override
