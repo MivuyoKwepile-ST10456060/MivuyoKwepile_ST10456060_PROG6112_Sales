@@ -45,11 +45,4 @@ public class Sale {
                 productId, getReceiptLine());
     }
 
-    public Product getProduct() {
-        return null;
-    }
-
-    public int getQuantity() {
-        return 0;
-    }
 }
