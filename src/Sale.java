@@ -45,4 +45,5 @@ public class Sale {
                 productId, getReceiptLine());
     }
 
+
 }
