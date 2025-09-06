@@ -18,10 +18,14 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getProductId() { return productId; }
-    public String getName() { return name; }
-    public double getPrice() { return price; }
-    public int getQuantity() { return quantity; }
+    public String getProductId() {
+        return productId; }
+    public String getName() {
+        return name; }
+    public double getPrice() {
+        return price; }
+    public int getQuantity() {
+        return quantity; }
 
 
     public void updatePrice(double newPrice) {

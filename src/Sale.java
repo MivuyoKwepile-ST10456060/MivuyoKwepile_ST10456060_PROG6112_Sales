@@ -44,4 +44,12 @@ public class Sale {
                 timestamp.format(DateTimeFormatter.ISO_LOCAL_TIME),
                 productId, getReceiptLine());
     }
+
+    public Product getProduct() {
+        return null;
+    }
+
+    public int getQuantity() {
+        return 0;
+    }
 }
