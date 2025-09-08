@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InventoryTest {
+class SalesTest {
 
     private Inventory inventory;
 
